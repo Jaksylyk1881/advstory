@@ -70,11 +70,11 @@ class _VideoContentState extends StoryContentState<VideoContent> {
       // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
       setState(() {});
     });
-
     if (!mounted) return;
     setState(() {
       _videoController = controller;
     });
+    _videoController?.play();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       markReady(duration: controller.value.duration);
     });
