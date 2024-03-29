@@ -25,12 +25,12 @@ class _PlayerState extends State<Player> {
       body: SafeArea(
         child: Stack(
           children: [
-            Align(
+            const Align(
               alignment: Alignment.topCenter,
               child: Padding(
-                padding: const EdgeInsets.all(15),
+                padding: EdgeInsets.all(15),
                 child: Row(
-                  children: const [
+                  children: [
                     Icon(Icons.info, color: Colors.blue),
                     SizedBox(width: 10),
                     Expanded(
@@ -57,8 +57,7 @@ class _PlayerState extends State<Player> {
                       children: [
                         ElevatedButton(
                           child: const Text('Open'),
-                          onPressed: () =>
-                              _controller.open(StoryPosition(2, 2)),
+                          onPressed: () => _controller.open(StoryPosition(2, 2)),
                         ),
                         const SizedBox(width: 20),
                         ElevatedButton(
