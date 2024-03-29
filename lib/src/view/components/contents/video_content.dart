@@ -66,7 +66,10 @@ class _VideoContentState extends StoryContentState<VideoContent> {
 
     if (!mounted) return;
     final controller = VideoPlayerController.file(file);
-    await controller.initialize();
+    await controller.initialize().then((_) {
+      // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+      setState(() {});
+    });
 
     if (!mounted) return;
     setState(() {
