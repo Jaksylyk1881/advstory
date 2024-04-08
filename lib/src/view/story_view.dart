@@ -54,7 +54,7 @@ class _StoryViewState extends State<StoryView> {
         valueListenable: _provider!.controller.gesturesDisabled,
         builder: (context, bool value, child) {
           return IgnorePointer(
-            ignoring: value,
+            ignoring: false,
             child: child,
           );
         },
@@ -76,8 +76,7 @@ class _StoryViewState extends State<StoryView> {
                 return const SizedBox();
               }
 
-              final ValueNotifier<Widget> content =
-                  ValueNotifier(_provider!.style());
+              final ValueNotifier<Widget> content = ValueNotifier(_provider!.style());
 
               () async {
                 final story = await _provider!.buildHelper.buildStory(index);
@@ -141,8 +140,7 @@ class _StoryViewState extends State<StoryView> {
   void _callInterceptor(double delta) {
     final cont = _provider!.controller;
 
-    if (cont.storyController!.page!.round() == cont.storyCount - 1 &&
-        delta < 0) {
+    if (cont.storyController!.page!.round() == cont.storyCount - 1 && delta < 0) {
       _event = StoryEvent.close;
     } else {
       _event = delta < 0 ? StoryEvent.nextStory : StoryEvent.previousStory;
@@ -160,8 +158,7 @@ class _StoryViewState extends State<StoryView> {
 
       final addition = _delta < 0 ? 1 : -1;
       final contPage = cont.page!.round();
-      final page =
-          _delta.abs() < width * .5 && bound ? contPage + addition : contPage;
+      final page = _delta.abs() < width * .5 && bound ? contPage + addition : contPage;
 
       _isAnimating = true;
       const duration = Duration(milliseconds: 300);
