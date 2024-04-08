@@ -129,7 +129,7 @@ class _TrayViewState extends State<TrayView> with TickerProviderStateMixin {
           style: widget.style,
           preloadStory: widget.preloadStory,
           preloadContent: widget.preloadContent,
-          firstContentPreperation: null, // firstContentPreperation,
+          firstContentPreperation: firstContentPreperation,
           child: const StoryView(),
         ),
       ),

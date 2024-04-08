@@ -99,11 +99,9 @@ abstract class StoryContentState<T extends StoryContent> extends State<T> {
   /// ```
   bool get shouldShowLoading {
     assert(_dataProvider != null, _excMessage);
-    // if (!isFirstContent) return true;
+    if (!isFirstContent) return true;
 
-    // return !_dataProvider!.positionNotifier.trayWillAnimate;
-
-    return true;
+    return !_dataProvider!.positionNotifier.trayWillAnimate;
   }
 
   /// Provided or default AdvStoryController.
