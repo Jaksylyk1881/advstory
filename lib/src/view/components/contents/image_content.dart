@@ -100,7 +100,7 @@ class _ImageContentState extends StoryContentState<ImageContent> {
       );
     }
 
-    return loadingScreen;
+    return shouldShowLoading ? loadingScreen : const SizedBox();
   }
 
   @override

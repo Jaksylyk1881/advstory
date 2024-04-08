@@ -54,7 +54,7 @@ class _StoryViewState extends State<StoryView> {
         valueListenable: _provider!.controller.gesturesDisabled,
         builder: (context, bool value, child) {
           return IgnorePointer(
-            ignoring: false,
+            ignoring: value,
             child: child,
           );
         },
