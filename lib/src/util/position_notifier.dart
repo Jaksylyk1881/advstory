@@ -9,7 +9,8 @@ import 'package:advstory/src/contants/enums.dart';
 /// state.
 ///
 /// [AdvStoryController] updates position and status to notify contents.
-class PositionNotifier extends ChangeNotifier implements StoryPosition, ValueListenable {
+class PositionNotifier extends ChangeNotifier
+    implements StoryPosition, ValueListenable {
   /// Story view opening position.
   StoryPosition initialPosition = StoryPosition(0, 0);
 
@@ -72,11 +73,14 @@ class PositionNotifier extends ChangeNotifier implements StoryPosition, ValueLis
   @override
   int get story => _story;
 
-  // @override
-  // bool operator ==(Object other) => other is StoryPosition && content == other.content && story == other.story;
+  @override
+  bool operator ==(Object other) =>
+      other is StoryPosition &&
+      content == other.content &&
+      story == other.story;
 
-  // @override
-  // int get hashCode => Object.hash(content, story);
+  @override
+  int get hashCode => Object.hash(content, story);
 
   @override
   String toString() => 'StoryPosition(content: $content, story: $story)';

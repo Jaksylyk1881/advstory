@@ -19,7 +19,7 @@ class _ControllerUsageState extends State<ControllerUsage> {
 
   /// Shows snackbars about events.
   void _showSnackbar(StoryEvent event, StoryPosition position) {
-    void show(BuildContext context) {
+    void _show(BuildContext context) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -41,9 +41,10 @@ class _ControllerUsageState extends State<ControllerUsage> {
     }
 
     if (event == StoryEvent.close) {
-      show(context);
-    } else if (_key.currentState?.context != null && _key.currentState?.mounted == true) {
-      show(_key.currentState!.context);
+      _show(context);
+    } else if (_key.currentState?.context != null &&
+        _key.currentState?.mounted == true) {
+      _show(_key.currentState!.context);
     }
   }
 
@@ -106,7 +107,7 @@ class _ControllerUsageState extends State<ControllerUsage> {
   }
 
   Widget _buildDescriptions() {
-    Widget desc(IconData icon, String desc) {
+    Widget _desc(IconData icon, String desc) {
       return Container(
         padding: const EdgeInsets.all(10),
         child: Row(
@@ -124,17 +125,17 @@ class _ControllerUsageState extends State<ControllerUsage> {
       crossAxisCount: 2,
       childAspectRatio: 6,
       children: [
-        desc(Icons.undo, "To previous story"),
-        desc(Icons.redo, "To next story"),
-        desc(Icons.skip_previous, "To previous content"),
-        desc(Icons.skip_next, "To next content"),
-        desc(Icons.pause, "Pause"),
-        desc(Icons.play_arrow, "Resume"),
-        desc(Icons.do_not_touch_rounded, "Disable gestures"),
-        desc(Icons.touch_app, "Enable gestures"),
-        desc(Icons.visibility_off, "Hide components"),
-        desc(Icons.visibility, "Show components"),
-        desc(Icons.navigation, "Jump to position"),
+        _desc(Icons.undo, "To previous story"),
+        _desc(Icons.redo, "To next story"),
+        _desc(Icons.skip_previous, "To previous content"),
+        _desc(Icons.skip_next, "To next content"),
+        _desc(Icons.pause, "Pause"),
+        _desc(Icons.play_arrow, "Resume"),
+        _desc(Icons.do_not_touch_rounded, "Disable gestures"),
+        _desc(Icons.touch_app, "Enable gestures"),
+        _desc(Icons.visibility_off, "Hide components"),
+        _desc(Icons.visibility, "Show components"),
+        _desc(Icons.navigation, "Jump to position"),
       ],
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:advstory/src/contants/enums.dart';
 import 'package:advstory/src/model/story.dart';
 import 'package:advstory/src/model/story_position.dart';
@@ -37,19 +39,21 @@ class ContentViewState extends State<ContentView> {
   DataProvider? _provider;
 
   /// Returns width without using [MediaQuery].
-  double get width => (View.of(context).physicalSize / View.of(context).devicePixelRatio).width;
+  double get width => (window.physicalSize / window.devicePixelRatio).width;
 
   @override
   void didChangeDependencies() {
     _provider ??= DataProvider.of(context)!;
-    final initialPage = _provider!.positionNotifier.initialPosition.story == widget.storyIndex
-        ? _provider!.positionNotifier.content
-        : 0;
+    final initialPage =
+        _provider!.positionNotifier.initialPosition.story == widget.storyIndex
+            ? _provider!.positionNotifier.content
+            : 0;
     _pageController ??= ExtendedPageController(
       itemCount: widget.story.contentCount,
       initialPage: initialPage,
     );
-    _provider!.controller.setContentController(_pageController!, widget.storyIndex);
+    _provider!.controller
+        .setContentController(_pageController!, widget.storyIndex);
 
     super.didChangeDependencies();
   }
@@ -82,7 +86,7 @@ class ContentViewState extends State<ContentView> {
   /// including footer and header areas.
   void _handleDownPress(_) {
     // Close keyboard if opened.
-    if (View.of(context).viewInsets.bottom > 0) {
+    if (window.viewInsets.bottom > 0) {
       FocusManager.instance.primaryFocus?.unfocus();
 
       if (_provider!.style.hideBars) {
@@ -195,9 +199,11 @@ class ContentViewState extends State<ContentView> {
             builder: (context, value, child) {
               return value == widget.storyIndex
                   ? StoryIndicator(
-                      activeIndicatorIndex: _pageController!.page?.toInt() ?? _pageController!.initialPage.toInt(),
+                      activeIndicatorIndex: _pageController!.page?.toInt() ??
+                          _pageController!.initialPage.toInt(),
                       count: widget.story.contentCount,
-                      controller: _provider!.controller.flowManager.indicatorController,
+                      controller:
+                          _provider!.controller.flowManager.indicatorController,
                       style: _provider!.style.indicatorStyle,
                     )
                   : StoryIndicator.placeholder(

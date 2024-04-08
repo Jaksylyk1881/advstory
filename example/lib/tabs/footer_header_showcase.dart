@@ -24,15 +24,15 @@ class FooterHeaderShowcase extends StatelessWidget {
       color: Colors.white,
       borderRadius: BorderRadius.circular(10),
       elevation: 5,
-      child: const Padding(
-        padding: EdgeInsets.symmetric(vertical: 15),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 15),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Row(
-                children: [
+                children: const [
                   Icon(Icons.info, color: Colors.blue),
                   SizedBox(width: 10),
                   Expanded(
@@ -45,8 +45,8 @@ class FooterHeaderShowcase extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20),
-            SizedBox(
+            const SizedBox(height: 20),
+            const SizedBox(
               height: 100,
               child: CustomHeaderFooter(),
             ),

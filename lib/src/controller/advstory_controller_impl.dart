@@ -54,7 +54,8 @@ class AdvStoryControllerImpl implements AdvStoryController {
 
   /// Active content pageview controller. This controller lets to skip next and
   /// previous content.
-  ExtendedPageController? get contentController => _contentControllers[storyIndex];
+  ExtendedPageController? get contentController =>
+      _contentControllers[storyIndex];
 
   /// Keeps controllers until related content is removed from widget tree.
   final _contentControllers = <int, ExtendedPageController>{};
@@ -296,13 +297,15 @@ class AdvStoryControllerImpl implements AdvStoryController {
   }
 
   @override
-  void setInterceptor(Interceptor interceptor) => this.interceptor = interceptor;
+  void setInterceptor(Interceptor interceptor) =>
+      this.interceptor = interceptor;
 
   @override
   void removeInterceptor() => interceptor = null;
 
   @override
-  void setTrayTapInterceptor(TrayTapInterceptor interceptor) => trayTapInterceptor = interceptor;
+  void setTrayTapInterceptor(TrayTapInterceptor interceptor) =>
+      trayTapInterceptor = interceptor;
 
   @override
   void removeTrayTapInterceptor() => trayTapInterceptor = null;
@@ -325,7 +328,7 @@ class AdvStoryControllerImpl implements AdvStoryController {
     assert(content >= 0, "Content index out of range!");
     flowManager.reset();
 
-    void listener() {
+    void _listener() {
       if (storyController!.page!.floor() == story) {
         SchedulerBinding.instance.addPostFrameCallback((timeStamp) async {
           await _waitContentController(story);
@@ -339,7 +342,7 @@ class AdvStoryControllerImpl implements AdvStoryController {
           positionNotifier.update(content: content, story: story);
         });
 
-        storyController!.removeListener(listener);
+        storyController!.removeListener(_listener);
       }
     }
 
@@ -348,7 +351,7 @@ class AdvStoryControllerImpl implements AdvStoryController {
       contentController!.jumpToPage(content);
       positionNotifier.update(content: content);
     } else {
-      storyController!.addListener(listener);
+      storyController!.addListener(_listener);
       storyController!.jumpToPage(story);
     }
   }
@@ -421,7 +424,9 @@ class AdvStoryControllerImpl implements AdvStoryController {
       gesturesDisabled.value = false;
     }
 
-    final event = positionNotifier.content < contentIndex ? StoryEvent.nextStory : StoryEvent.previousStory;
+    final event = positionNotifier.content < contentIndex
+        ? StoryEvent.nextStory
+        : StoryEvent.previousStory;
 
     positionNotifier.update(content: contentIndex, story: storyIndex);
     notifyListeners(event);
