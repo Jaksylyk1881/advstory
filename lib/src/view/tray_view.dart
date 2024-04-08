@@ -98,8 +98,7 @@ class _TrayViewState extends State<TrayView> with TickerProviderStateMixin {
     if (!_canShowStory) return;
 
     bool isAnimated = tray is TrayPositionProvider;
-    final pos = widget.controller.trayTapInterceptor?.call(index) ??
-        StoryPosition(0, index);
+    final pos = widget.controller.trayTapInterceptor?.call(index) ?? StoryPosition(0, index);
 
     if (isAnimated) {
       _trayAnimationManager!.update(shouldAnimate: true, index: index);
@@ -130,7 +129,7 @@ class _TrayViewState extends State<TrayView> with TickerProviderStateMixin {
           style: widget.style,
           preloadStory: widget.preloadStory,
           preloadContent: widget.preloadContent,
-          firstContentPreperation: firstContentPreperation,
+          firstContentPreperation: null, // firstContentPreperation,
           child: const StoryView(),
         ),
       ),
@@ -214,12 +213,8 @@ class _TrayViewState extends State<TrayView> with TickerProviderStateMixin {
           );
         },
         separatorBuilder: (context, index) => SizedBox(
-          width: widget.style.trayListStyle.direction == Axis.vertical
-              ? 0
-              : widget.style.trayListStyle.spacing,
-          height: widget.style.trayListStyle.direction == Axis.horizontal
-              ? 0
-              : widget.style.trayListStyle.spacing,
+          width: widget.style.trayListStyle.direction == Axis.vertical ? 0 : widget.style.trayListStyle.spacing,
+          height: widget.style.trayListStyle.direction == Axis.horizontal ? 0 : widget.style.trayListStyle.spacing,
         ),
       ),
     );
