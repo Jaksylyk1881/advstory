@@ -91,8 +91,8 @@ class _VideoContentState extends StoryContentState<VideoContent> {
         ),
       );
     }
-
-    return shouldShowLoading ? loadingScreen : const SizedBox();
+    return loadingScreen;
+    // return shouldShowLoading ? loadingScreen : const SizedBox();
   }
 
   @override
