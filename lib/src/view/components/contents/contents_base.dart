@@ -99,9 +99,11 @@ abstract class StoryContentState<T extends StoryContent> extends State<T> {
   /// ```
   bool get shouldShowLoading {
     assert(_dataProvider != null, _excMessage);
-    if (!isFirstContent) return true;
+    // if (!isFirstContent) return true;
 
-    return !_dataProvider!.positionNotifier.trayWillAnimate;
+    // return !_dataProvider!.positionNotifier.trayWillAnimate;
+
+    return true;
   }
 
   /// Provided or default AdvStoryController.
@@ -276,8 +278,7 @@ abstract class StoryContentState<T extends StoryContent> extends State<T> {
   /// your action in the [onTimeout] method.
   ///
   /// [markReady] cancels the timeout when called.
-  void setTimeout(Duration timeout) =>
-      _cron.start(onComplete: onTimeout, duration: timeout);
+  void setTimeout(Duration timeout) => _cron.start(onComplete: onTimeout, duration: timeout);
 
   /// Called when the end of the set timeout is reached.
   ///
