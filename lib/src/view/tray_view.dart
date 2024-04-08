@@ -149,7 +149,7 @@ class _TrayViewState extends State<TrayView> with TickerProviderStateMixin {
             firstContentPreperation!.complete();
           } else {
             // If position not changed, wait content preperation.
-            await firstContentPreperation!.future;
+            firstContentPreperation!.complete();
           }
         }
 
