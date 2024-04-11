@@ -1,5 +1,4 @@
 import 'package:advstory/advstory.dart';
-import 'package:advstory/src/util/animated_border_painter.dart';
 import 'package:flutter/material.dart';
 
 /// Circular loading indicator.
@@ -18,8 +17,7 @@ class LoadingIndicator extends StatefulWidget {
   State<LoadingIndicator> createState() => _LoadingIndicatorState();
 }
 
-class _LoadingIndicatorState extends State<LoadingIndicator>
-    with TickerProviderStateMixin {
+class _LoadingIndicatorState extends State<LoadingIndicator> with TickerProviderStateMixin {
   late final AnimationController _controller;
   late Color? _bg = widget.style.backgroundColor;
 
@@ -59,26 +57,36 @@ class _LoadingIndicatorState extends State<LoadingIndicator>
       constraints: const BoxConstraints.expand(),
       color: _bg,
       child: Center(
-        child: CustomPaint(
-          painter: AnimatedBorderPainter(
-            gradientColors: widget.style.gradientColors,
-            gapSize: 0,
-            radius: widget.style.size,
-            strokeWidth: widget.style.strokeWidth,
-            animation: CurvedAnimation(
-              parent: Tween(begin: 0.0, end: 1.0).animate(
-                _controller,
-              ),
-              curve: Curves.slowMiddle,
-            ),
-            colorStops: widget.style.colorStops,
-          ),
-          child: SizedBox(
-            width: widget.style.size - widget.style.strokeWidth,
-            height: widget.style.size - widget.style.strokeWidth,
-          ),
+        child: CircularProgressIndicator.adaptive(
+          valueColor: AlwaysStoppedAnimation<Color>(widget.style.color),
         ),
       ),
+
+      ///
+      /// OLD CODE
+      ///
+
+      // Center(
+      //   child: CustomPaint(
+      //     painter: AnimatedBorderPainter(
+      //       gradientColors: widget.style.gradientColors,
+      //       gapSize: 0,
+      //       radius: widget.style.size,
+      //       strokeWidth: widget.style.strokeWidth,
+      //       animation: CurvedAnimation(
+      //         parent: Tween(begin: 0.0, end: 1.0).animate(
+      //           _controller,
+      //         ),
+      //         curve: Curves.slowMiddle,
+      //       ),
+      //       colorStops: widget.style.colorStops,
+      //     ),
+      //     child: SizedBox(
+      //       width: widget.style.size - widget.style.strokeWidth,
+      //       height: widget.style.size - widget.style.strokeWidth,
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

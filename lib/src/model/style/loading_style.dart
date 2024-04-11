@@ -20,6 +20,7 @@ class LoadingStyle {
     ],
     this.colorStops,
     this.size = 50,
+    this.color = Colors.blue,
   });
 
   /// Background color of the loading screen.
@@ -43,4 +44,7 @@ class LoadingStyle {
 
   /// Indicator stroke width.
   final double strokeWidth;
+
+  /// Indicator color.
+  final Color color;
 }
