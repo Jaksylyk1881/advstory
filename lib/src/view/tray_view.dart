@@ -187,6 +187,7 @@ class _TrayViewState extends State<TrayView> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return _trayAnimationManager ??= TrayAnimationManager(
       child: ListView.separated(
+        physics: widget.style.trayListStyle.physics,
         padding: widget.style.trayListStyle.padding,
         scrollDirection: widget.style.trayListStyle.direction,
         itemCount: widget.controller.storyCount,
