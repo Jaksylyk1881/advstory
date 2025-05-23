@@ -31,6 +31,7 @@ class AdvStory extends StatefulWidget {
     this.preloadStory = true,
     this.preloadContent = true,
     this.style = const AdvStoryStyle(),
+    this.onTrayTap,
     Key? key,
   })  : storyController = controller,
         hasTrays = true,
@@ -49,6 +50,7 @@ class AdvStory extends StatefulWidget {
     this.preloadStory = true,
     this.style = const AdvStoryStyle(),
     required AdvStoryPlayerController controller,
+    this.onTrayTap,
   })  : hasTrays = false,
         buildStoryOnTrayScroll = false,
         trayBuilder = null,
@@ -135,6 +137,8 @@ class AdvStory extends StatefulWidget {
   /// {@endtemplate}
   final bool preloadContent;
 
+  final Function()? onTrayTap;
+
   @override
   State<AdvStory> createState() => _AdvStoryState();
 }
@@ -161,8 +165,7 @@ class _AdvStoryState extends State<AdvStory> with TickerProviderStateMixin {
     );
     _indicatorController = AnimationController(vsync: this);
 
-    _controller = (widget.storyController ?? AdvStoryController())
-        as AdvStoryControllerImpl;
+    _controller = (widget.storyController ?? AdvStoryController()) as AdvStoryControllerImpl;
     _controller
       ..storyCount = widget.storyCount
       ..setAnimationControllers(
@@ -205,6 +208,7 @@ class _AdvStoryState extends State<AdvStory> with TickerProviderStateMixin {
         preloadStory: widget.preloadStory,
         style: widget.style,
         trayBuilder: widget.trayBuilder!,
+        onTrayTap: widget.onTrayTap,
       );
     }
 
